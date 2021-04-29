@@ -25,4 +25,11 @@ router.get('/get/:id', async (req, res) => {
     res.json(q);
 })
 
+//Delete quote
+router.delete('/delete/:id', async (req, res) => {
+    const result = await Quote.findByIdAndDelete({ _id: req.params.id});
+
+    res.json(result);
+})
+
 module.exports = router;
