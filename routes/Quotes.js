@@ -23,13 +23,20 @@ router.get('/get/:id', async (req, res) => {
     const q = await Quote.findById({ _id: req.params.id });
 
     res.json(q);
-})
+});
 
 //Delete quote
 router.delete('/delete/:id', async (req, res) => {
     const result = await Quote.findByIdAndDelete({ _id: req.params.id});
 
     res.json(result);
+});
+
+//Update quote
+router.patch('/update/:id', async (req,res) => {
+    const q = await Quote.updateOne({ _id: req.params.id }, { $set: req.body });
+    
+    res.json(q);
 })
 
 module.exports = router;
